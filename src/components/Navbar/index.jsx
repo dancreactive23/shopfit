@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import React from 'react';
+import { useContext } from 'react';
+import { ShopContext } from '../../Context';
 
 const Navbar = () =>{
 
-const linkActive = ({isActive}) => isActive ? 'underline underline-offset-2 decoration-double': undefined
+    const {count} = useContext(ShopContext)
+    const linkActive = ({isActive}) => isActive ? 'underline underline-offset-2 decoration-double': undefined
 
     return(
         <>
@@ -65,7 +67,7 @@ const linkActive = ({isActive}) => isActive ? 'underline underline-offset-2 deco
                         </NavLink>
                     </li>
                     <li>
-                        🛒0
+                        🛒{count}
                     </li>
                 </ul>
             </nav>
