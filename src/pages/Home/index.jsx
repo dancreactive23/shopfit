@@ -1,23 +1,12 @@
-import {useState, useEffect} from 'react';
+import {useContext} from 'react';
 import Card from "../../components/Card";
 import Layout from "../../components/Layout";
 import ProductDetail from '../../components/ProductDetail';
+import { ShopContext } from '../../Context';
 
 function Home(){
-    const [products,setProducts] = useState(null);
-
-    useEffect(() =>{
-        const fetchData = async () =>{
-            try{
-                const response = await fetch('https://fakestoreapi.com/products');
-                const data = await response.json();
-                setProducts(data)
-            }catch(error){
-                console.error(`Opps ocurrio un error ${error}`)
-            }
-        }
-        fetchData();
-    },[])
+    
+    const {products} = useContext(ShopContext);
 
     return(
         <Layout>

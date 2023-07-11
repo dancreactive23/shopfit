@@ -5,7 +5,7 @@ import {ShoppingBagIcon} from '@heroicons/react/24/solid';
 
 const Navbar = () =>{
 
-    const {count} = useContext(ShopContext)
+    const {productsToCart} = useContext(ShopContext)
     const linkActive = ({isActive}) => isActive ? 'underline underline-offset-2 decoration-double decoration-orange-700': undefined
 
     return(
@@ -70,7 +70,7 @@ const Navbar = () =>{
                     <li>
                         <span className='flex items-center gap-x-1'>
                             <ShoppingBagIcon className='w-6 h-6 fill-neutral-950'/>
-                            <div className='bg-orange-500 flex justify-center items-center text-white font-regular rounded-lg w-4 h-4'>{count}</div>
+                            <div className='bg-orange-500 flex justify-center items-center text-white font-regular rounded-lg w-4 h-4'>{productsToCart.length}</div>
                         </span>
                     </li>
                 </ul>
