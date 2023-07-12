@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import OrderCard from "../OrderCard";
 import { totalPrice } from "../../utils";
 import { useContext } from "react";
@@ -23,6 +24,7 @@ const CheckoutSideMenu = () =>{
         }
         setOrder([...order,orderToAdd]);
         setProductsToCart([]);
+        closeCheckoutSideMenu();
     }
 
     return(
@@ -33,19 +35,21 @@ const CheckoutSideMenu = () =>{
                 <XMarkIcon className='w-6 h-6 stroke-0 stroke-neutral-950 cursor-pointer hover:text-orange-600'/>
                 </div>
             </div>
-            <div className='px-6 pb-3 space-y-3 overflow-y-auto overflow-x-hidden h-full'>
+            <div className='px-6 pb-3 space-y-3 overflow-y-auto overflow-x-hidden h-full scrollbar-hide'>
                 {
                     productsToCart.map((product) =>(
                         <OrderCard id={product.id} key={product.id} image={product.image} title={product.title} price={product.price} handleDelete={handleDelete}/>
                     ))
                 }
             </div>
-            <div className='px-6 mb-6 space-y-2'>
-                <p className='flex justify-between items-center'>
+            <div className='px-6 mb-6'>
+                <p className='flex justify-between items-center mb-3'>
                     <span className='font-light text-orange-800'>Total:</span>
                     <span className='font-medium text-2xl '>${totalPrice(productsToCart)}</span>
                 </p>
-                <button className='w-full py-3 bg-orange-600 text-white font-semibold rounded-lg outline-0 shadow-lg ' onClick={handleCheckout}>Checkout</button>
+                <Link to='/my-orders/last'>
+                    <button className='w-full py-3 bg-orange-600 text-white font-semibold rounded-lg outline-0 shadow-lg ' onClick={handleCheckout}>Checkout</button>
+                </Link>
             </div>
         </aside>
     );
