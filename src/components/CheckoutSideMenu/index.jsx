@@ -1,5 +1,6 @@
 import React from "react";
 import OrderCard from "../OrderCard";
+import { totalPrice } from "../../utils";
 import { useContext } from "react";
 import { ShopContext } from "../../Context";
 import { XMarkIcon } from "@heroicons/react/24/solid";
@@ -26,6 +27,12 @@ const CheckoutSideMenu = () =>{
                         <OrderCard id={product.id} key={product.id} image={product.image} title={product.title} price={product.price} handleDelete={handleDelete}/>
                     ))
                 }
+            </div>
+            <div className='px-6 mb-6'>
+                <p className='flex justify-between items-center'>
+                    <span className='font-light text-orange-800'>Total:</span>
+                    <span className='font-medium text-2xl '>${totalPrice(productsToCart)}</span>
+                </p>
             </div>
         </aside>
     );

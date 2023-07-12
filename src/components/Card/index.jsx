@@ -8,8 +8,6 @@ const Card = ({price, title,image,category,id}) =>{
 
 
     const {
-        count,
-        setCount,
         openProductDetail,
         setShowProductDetail,
         setProductsToCart,
@@ -27,7 +25,6 @@ const Card = ({price, title,image,category,id}) =>{
 
     const addProductsToCart = (event,product) =>{
         event.stopPropagation();
-        setCount(count + 1);
         openCheckoutSideMenu();
         closeProductDetail();
         setProductsToCart([...productsToCart,product]);
