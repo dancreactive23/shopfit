@@ -7,12 +7,24 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 
 
 const CheckoutSideMenu = () =>{
-    const {isCheckoutSideMenuOpen,closeCheckoutSideMenu,productsToCart,setProductsToCart} = useContext(ShopContext);
+    const {isCheckoutSideMenuOpen,closeCheckoutSideMenu,productsToCart,setProductsToCart,order,setOrder} = useContext(ShopContext);
     
     const handleDelete = (id) =>{
         const filteredCartProducts = productsToCart.filter(product => product.id !== id);
         setProductsToCart(filteredCartProducts);
     }
+
+    const handleCheckout = () =>{
+        const orderToAdd = {
+            date: new Date().toUTCString().slice(5, 16),
+            products: productsToCart,
+            totalProducts: productsToCart.length,
+            totalPrice: totalPrice(productsToCart),
+        }
+        setOrder([...order,orderToAdd]);
+        setProductsToCart([]);
+    }
+
     return(
         <aside className={`${isCheckoutSideMenuOpen ? 'flex' : 'hidden'} w-[360px] h-[calc(100vh-68px)]  flex-col fixed right-0 top-20 bg-white border border-orange-400/60 rounded-lg text-neutral-950`}>
             <div className='flex justify-between items-center p-6'>
@@ -28,11 +40,12 @@ const CheckoutSideMenu = () =>{
                     ))
                 }
             </div>
-            <div className='px-6 mb-6'>
+            <div className='px-6 mb-6 space-y-2'>
                 <p className='flex justify-between items-center'>
                     <span className='font-light text-orange-800'>Total:</span>
                     <span className='font-medium text-2xl '>${totalPrice(productsToCart)}</span>
                 </p>
+                <button className='w-full py-3 bg-orange-600 text-white font-semibold rounded-lg outline-0 shadow-lg ' onClick={handleCheckout}>Checkout</button>
             </div>
         </aside>
     );
