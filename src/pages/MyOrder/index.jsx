@@ -1,7 +1,10 @@
 import {React,useContext} from 'react'
 import { ShopContext } from '../../Context'
+import { Link } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import OrderCard from '../../components/OrderCard'
+import { ChevronLeftIcon } from '@heroicons/react/24/solid'
+
 
 function MyOrder() {
 
@@ -9,7 +12,12 @@ function MyOrder() {
   const lastProduct = order?.at(-1);
   return (
     <Layout>
-        <p>MyOrder</p>
+        <div className='mb-6 flex justify-between items-center w-9/12 px-6'>
+          <Link to='/my-orders'>
+            <ChevronLeftIcon className='w-6 h-6 stroke-1 stroke-neutral-950 cursor-pointer hover:stroke-orange-600 hover:text-orange-600'/>
+          </Link>
+          <h1 className='font-normal'>My order</h1>
+      </div>
         <div className='px-6 pb-3 space-y-3 overflow-y-auto overflow-x-hidden w-9/12 h-full'>
         {
             lastProduct.products.map(product =>(

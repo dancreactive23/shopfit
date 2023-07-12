@@ -7,7 +7,7 @@ Layout.propTypes = {
     children: PropTypes.node.isRequired
 }
     return(
-        <div className="flex flex-col mt-20 items-center mb-10">
+        <div className="flex flex-col mt-20 items-center mb-10 gap-y-2">
             {children}
         </div>
     );
