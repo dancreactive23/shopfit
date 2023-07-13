@@ -9,7 +9,10 @@ import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 function MyOrder() {
 
   const {order} = useContext(ShopContext);
-  const lastProduct = order?.at(-1);
+  const currentPath = window.location.pathname
+  const index = currentPath.match(/\/([^/]+)\/?$/)[1];
+  let orderItem = index === 'last' ? order?.at(-1) : order?.[index];
+
   return (
     <Layout>
         <div className='mb-6 flex justify-between items-center w-9/12 px-6'>
@@ -20,13 +23,13 @@ function MyOrder() {
       </div>
         <div className='px-6 pb-3 space-y-3 overflow-y-auto overflow-x-hidden w-9/12 h-full'>
         {
-            lastProduct.products.map(product =>(
+            orderItem.products.map(product =>(
               <OrderCard id={product.id} key={product.id} image={product.image} title={product.title} price={product.price}/>
             ))
         }
           <p className='flex justify-between items-center mb-3'>
               <span className='font-light text-orange-800'>Total:</span>
-              <span className='font-medium text-2xl '>${lastProduct.totalPrice}</span>
+              <span className='font-medium text-2xl '>${orderItem.totalPrice}</span>
           </p>
         </div>
     </Layout>

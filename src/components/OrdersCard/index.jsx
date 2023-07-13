@@ -10,7 +10,7 @@ const OrdersCard = ({date,totalProducts,totalPrice}) =>{
                 <span className='font-medium underline underline-offset-2 decoration-orange-600'>{totalProducts}</span>
             </p>
             <p className='flex items-center justify-between w-2/5 h-auto'>
-                <span className='text-xl text-neutral-950 font-medium '>${totalPrice}</span>
+                <span className='text-xl w-3/5 truncate text-neutral-950 font-medium '>${totalPrice}</span>
                 <ChevronRightIcon className='w-6 h-6 stroke-1 stroke-neutral-950 cursor-pointer hover:stroke-orange-600 hover:text-orange-600'/>
             </p>
         </div>

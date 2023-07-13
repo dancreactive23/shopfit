@@ -12,7 +12,7 @@ function Myorders() {
         <p className='mb-6'>My orders</p>
         {
           order.map((orderItem,index) =>(
-            <Link key={index} to={`/my-orders/${orderItem.id}`}>
+            <Link key={index} to={`/my-orders/${index}`}>
               <OrdersCard  date={orderItem.date} totalProducts={orderItem.totalProducts} totalPrice={orderItem.totalPrice}/>
             </Link>
           ))
