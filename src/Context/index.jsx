@@ -6,11 +6,11 @@ export const ShopContext = createContext();
 export const ShopProvider = ({children}) =>{
 
     // get products by title
-    const [searchByTitle,setSearchByTitle] = useState(null);
+    const [searchByTitle,setSearchByTitle] = useState('');
 
 
     //API connection
-        const [products,setProducts] = useState(null);
+        const [products,setProducts] = useState([]);  
 
         useEffect(() =>{
             const fetchData = async () =>{
