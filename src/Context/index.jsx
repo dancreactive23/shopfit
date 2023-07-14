@@ -5,6 +5,10 @@ export const ShopContext = createContext();
 
 export const ShopProvider = ({children}) =>{
 
+    // get products by title
+    const [searchByTitle,setSearchByTitle] = useState(null);
+
+
     //API connection
         const [products,setProducts] = useState(null);
 
@@ -41,6 +45,7 @@ export const ShopProvider = ({children}) =>{
     //shopping cart - order
     const [order, setOrder] = useState([]);
 
+
     return(
         <ShopContext.Provider value={{
             products,
@@ -56,6 +61,8 @@ export const ShopProvider = ({children}) =>{
             closeCheckoutSideMenu,
             order,
             setOrder,
+            searchByTitle,
+            setSearchByTitle,
         }}>
             {children}
         </ShopContext.Provider>

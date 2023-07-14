@@ -7,7 +7,7 @@ const OrdersCard = ({date,totalProducts,totalPrice}) =>{
         <div className='flex justify-between items-center shadow-sm border-2 border-orange-600 rounded-lg w-96  px-2 py-4'>
             <p className='flex gap-x-4 w-3/5 text-neutral-950'>
                 <span className='font-light italic'>{date}</span>
-                <span className='font-medium underline underline-offset-2 decoration-orange-600'>{totalProducts}</span>
+                <span className='font-medium underline underline-offset-2 decoration-orange-600'>{totalProducts} items</span>
             </p>
             <p className='flex items-center justify-between w-2/5 h-auto'>
                 <span className='text-xl w-3/5 truncate text-neutral-950 font-medium '>${totalPrice}</span>

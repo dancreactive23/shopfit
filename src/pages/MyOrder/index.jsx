@@ -19,7 +19,7 @@ function MyOrder() {
           <Link to='/my-orders'>
             <ChevronLeftIcon className='w-6 h-6 stroke-1 stroke-neutral-950 cursor-pointer hover:stroke-orange-600 hover:text-orange-600'/>
           </Link>
-          <h1 className='font-normal'>My order</h1>
+          <h1 className='font-medium text-xl'>My order</h1>
       </div>
         <div className='px-6 pb-3 space-y-3 overflow-y-auto overflow-x-hidden w-9/12 h-full'>
         {

@@ -9,7 +9,7 @@ function Myorders() {
   const {order} = useContext(ShopContext)
   return (
     <Layout>
-        <p className='mb-6'>My orders</p>
+        <p className='mb-6 font-medium text-xl'>My orders</p>
         {
           order.map((orderItem,index) =>(
             <Link key={index} to={`/my-orders/${index}`}>
