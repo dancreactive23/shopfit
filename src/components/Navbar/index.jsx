@@ -23,8 +23,13 @@ const Navbar = () =>{
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/clothes' className={linkActive}>
-                            Clothes
+                        <NavLink to="/men's clothing" className={linkActive}>
+                            Men
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/women's clothing" className={linkActive}>
+                            Women
                         </NavLink>
                     </li>
                     <li>
@@ -33,18 +38,8 @@ const Navbar = () =>{
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/furnitures' className={linkActive}>
-                            Furnitures
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/toys' className={linkActive}>
-                            Toys
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/others' className={linkActive}>
-                            Others
+                        <NavLink to='/jewelery' className={linkActive}>
+                            Jewelery
                         </NavLink>
                     </li>
                 </ul>

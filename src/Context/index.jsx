@@ -45,6 +45,13 @@ export const ShopProvider = ({children}) =>{
     //shopping cart - order
     const [order, setOrder] = useState([]);
 
+    //get index from URL path exa: /last,/0,/electronics...
+    const getIndex = () =>{
+        const currentPath = window.location.pathname
+        let index = currentPath === '/' ? currentPath :currentPath.match(/\/([^/]+)\/?$/)[1].replace(/%20/,' ')
+        return index;
+    }
+
 
     return(
         <ShopContext.Provider value={{
@@ -63,6 +70,7 @@ export const ShopProvider = ({children}) =>{
             setOrder,
             searchByTitle,
             setSearchByTitle,
+            getIndex,
         }}>
             {children}
         </ShopContext.Provider>

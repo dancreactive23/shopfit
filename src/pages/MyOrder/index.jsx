@@ -8,10 +8,8 @@ import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 
 function MyOrder() {
 
-  const {order} = useContext(ShopContext);
-  const currentPath = window.location.pathname
-  const index = currentPath.match(/\/([^/]+)\/?$/)[1];
-  let orderItem = index === 'last' ? order?.at(-1) : order?.[index];
+  const {order,getIndex} = useContext(ShopContext);
+  let orderItem = getIndex() === 'last' ? order?.at(-1) : order?.[getIndex()];
 
   return (
     <Layout>
