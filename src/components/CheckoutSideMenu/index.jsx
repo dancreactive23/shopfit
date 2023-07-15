@@ -8,7 +8,14 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 
 
 const CheckoutSideMenu = () =>{
-    const {isCheckoutSideMenuOpen,closeCheckoutSideMenu,productsToCart,setProductsToCart,order,setOrder} = useContext(ShopContext);
+    const {
+        isCheckoutSideMenuOpen,
+        closeCheckoutSideMenu,
+        productsToCart,
+        setProductsToCart,
+        order,
+        setOrder,
+        setSearchByTitle} = useContext(ShopContext);
     
     const handleDelete = (id) =>{
         const filteredCartProducts = productsToCart.filter(product => product.id !== id);
@@ -25,6 +32,7 @@ const CheckoutSideMenu = () =>{
         setOrder([...order,orderToAdd]);
         setProductsToCart([]);
         closeCheckoutSideMenu();
+        setSearchByTitle('');
     }
 
     return(

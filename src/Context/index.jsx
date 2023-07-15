@@ -21,9 +21,11 @@ export const ShopProvider = ({children}) =>{
                 }catch(error){
                     console.error(`Opps ocurrio un error ${error}`)
                 }
+            
             }
             fetchData();
-        },[])
+      
+        },[products,searchByTitle])
 
 
     //product detail - open/close
