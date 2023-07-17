@@ -5,13 +5,62 @@ import {ShoppingBagIcon} from '@heroicons/react/24/solid';
 
 const Navbar = () =>{
 
-    const {productsToCart,setSignOut} = useContext(ShopContext)
+    const {productsToCart,setSignOut,signOut} = useContext(ShopContext)
     const linkActive = ({isActive}) => isActive ? 'underline underline-offset-2 decoration-double decoration-orange-700': undefined
 
+    //checking if the user clicked signout button on navbar
+
+    const signout = localStorage.getItem('sign-out');
+    const stringifiedSignOut = JSON.parse(signout);
+    const isUserSignout = signOut ?? stringifiedSignOut;
+    
     const handleSignOut = () =>{
         const signOutStringified = JSON.stringify(true);
         localStorage.setItem('sign-out' , signOutStringified);
         setSignOut(true);
+    }
+
+    const viewRender = () =>{
+        if(isUserSignout){
+            return(
+                <li>
+                    <NavLink to='/sign-in' className={linkActive}
+                    onClick={handleSignOut}>
+                        Sign in
+                    </NavLink>
+                </li>
+            )
+        }else{
+            return(
+                <>
+                     <li className='text-neutral-950/60'>
+                        dancreactive23@email.com
+                    </li>
+                    <li>
+                        <NavLink to='/my-orders' className={linkActive}>
+                            My orders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/my-account' className={linkActive}>
+                            My account
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/sign-in' className={linkActive}
+                        onClick={handleSignOut}>
+                            Sign out
+                        </NavLink>
+                    </li>
+                    <li>
+                        <span className='flex items-center gap-x-1'>
+                            <ShoppingBagIcon className='w-6 h-6 fill-neutral-950'/>
+                            <div className='bg-orange-500 flex justify-center items-center text-white font-regular rounded-lg w-4 h-4'>{productsToCart.length}</div>
+                        </span>
+                    </li>
+                </>
+            )
+        }
     }
 
     return(
@@ -50,31 +99,7 @@ const Navbar = () =>{
                     </li>
                 </ul>
                 <ul className='flex items-center gap-x-3'>
-                    <li className='text-neutral-950/60'>
-                        dancreactive23@email.com
-                    </li>
-                    <li>
-                        <NavLink to='/my-orders' className={linkActive}>
-                            My orders
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/my-account' className={linkActive}>
-                            My account
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/sign-in' className={linkActive}
-                        onClick={handleSignOut}>
-                            Sign out
-                        </NavLink>
-                    </li>
-                    <li>
-                        <span className='flex items-center gap-x-1'>
-                            <ShoppingBagIcon className='w-6 h-6 fill-neutral-950'/>
-                            <div className='bg-orange-500 flex justify-center items-center text-white font-regular rounded-lg w-4 h-4'>{productsToCart.length}</div>
-                        </span>
-                    </li>
+                    {viewRender()}
                 </ul>
             </nav>
         </>
