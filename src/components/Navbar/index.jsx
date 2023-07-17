@@ -5,8 +5,14 @@ import {ShoppingBagIcon} from '@heroicons/react/24/solid';
 
 const Navbar = () =>{
 
-    const {productsToCart} = useContext(ShopContext)
+    const {productsToCart,setSignOut} = useContext(ShopContext)
     const linkActive = ({isActive}) => isActive ? 'underline underline-offset-2 decoration-double decoration-orange-700': undefined
+
+    const handleSignOut = () =>{
+        const signOutStringified = JSON.stringify(true);
+        localStorage.setItem('sign-out' , signOutStringified);
+        setSignOut(true);
+    }
 
     return(
         <>
@@ -58,8 +64,9 @@ const Navbar = () =>{
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/sign-in' className={linkActive}>
-                            Sign in
+                        <NavLink to='/sign-in' className={linkActive}
+                        onClick={handleSignOut}>
+                            Sign out
                         </NavLink>
                     </li>
                     <li>

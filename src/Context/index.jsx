@@ -3,7 +3,36 @@ import { createContext,useState,useEffect } from 'react';
 
 export const ShopContext = createContext();
 
+//connecting with localStorage to get account and signout keys
+
+export const initializeLocalStorage = () =>{
+    const accountInLocalStorage = localStorage.getItem('account');
+    const signoutInLocalStorage = localStorage.getItem('sign-out');
+
+    let parsedAccount;
+    let parsedSignout;
+
+    if(!accountInLocalStorage){
+        localStorage.setItem('account',JSON.stringify({}))
+        parsedAccount = {}
+    }else{
+        parsedAccount = JSON.parse(accountInLocalStorage);
+    }
+
+    if(!signoutInLocalStorage){
+        localStorage.setItem('sign-out',JSON.stringify(false));
+        parsedSignout = false;
+    }else{
+        parsedSignout = JSON.parse(signoutInLocalStorage);
+    }
+}
+
 export const ShopProvider = ({children}) =>{
+
+    //account and signOut states
+
+    const [account,setAccount] = useState({});
+    const [signOut ,setSignOut] = useState(false);
 
     // get products by title
     const [searchByTitle,setSearchByTitle] = useState('');
@@ -73,6 +102,10 @@ export const ShopProvider = ({children}) =>{
             searchByTitle,
             setSearchByTitle,
             getIndex,
+            account,
+            signOut,
+            setAccount,
+            setSignOut,
         }}>
             {children}
         </ShopContext.Provider>
