@@ -5,7 +5,7 @@ import {ShoppingBagIcon} from '@heroicons/react/24/solid';
 
 const Navbar = () =>{
 
-    const {productsToCart,setSignOut,signOut} = useContext(ShopContext)
+    const {productsToCart,setSignOut,signOut,account} = useContext(ShopContext)
     const linkActive = ({isActive}) => isActive ? 'underline underline-offset-2 decoration-double decoration-orange-700': undefined
 
     //checking if the user clicked signout button on navbar
@@ -34,7 +34,7 @@ const Navbar = () =>{
             return(
                 <>
                      <li className='text-neutral-950/60'>
-                        dancreactive23@email.com
+                        {account.email}
                     </li>
                     <li>
                         <NavLink to='/my-orders' className={linkActive}>

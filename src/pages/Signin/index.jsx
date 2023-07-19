@@ -1,12 +1,12 @@
 import {React,useContext,useState,useRef} from 'react'
-import { Link } from 'react-router-dom'
+import { Link,Navigate } from 'react-router-dom'
 import { ShopContext } from '../../Context'
 import Layout from '../../components/Layout'
 
 function Signin() {
 
   //context
-  const {setSignOut,account} = useContext(ShopContext);
+  const {setSignOut,account,setAccount} = useContext(ShopContext);
 
   //local state for rendering view
   const [view, setView] = useState('user-info');
@@ -24,6 +24,14 @@ function Signin() {
 
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountinState;
 
+
+  const handleLogin = () =>{
+    const signOutValue = JSON.stringify(false);
+    localStorage.setItem('sign-out',signOutValue);
+    setSignOut(false);
+    return <Navigate replace to={'/'}/>
+  }
+
   const createAnAccount = () =>{
     const formData = new FormData(form.current);
     const data = {
@@ -31,13 +39,10 @@ function Signin() {
       email:formData.get('email'),
       password:formData.get('password'),
     }
-    console.log(data);
-  }
-
-  const handleLogin = () =>{
-    const signOutValue = JSON.stringify(false);
-    localStorage.setItem('sign-out',signOutValue);
-    setSignOut(false);
+    const stringifiedAccount = JSON.stringify(data);
+    localStorage.setItem('account',stringifiedAccount);
+    setAccount(data)
+    handleLogin();
   }
 
   const renderLogin = () =>{
@@ -77,24 +82,24 @@ function Signin() {
           <label htmlFor='name' className='font-light text-sm'>Your name:</label>
           <input type="text"
             id='name' name='name' defaultValue={parsedAccount?.name} placeholder='Dan'
-            className='border border-orange-600 rounded-lg placeholder:text-sm placeholder:font-light placeholder:text-black/60 py-2 px-4 focus:outline-none' />
+            className='border w-full border-orange-600 rounded-lg placeholder:text-sm placeholder:font-light placeholder:text-black/60 py-2 px-4 focus:outline-none' />
         </div>
         <div className='flex flex-col gap-2 items-center '>
           <label htmlFor='email' className='font-light text-sm'>Your email:</label>
           <input type="text"
             id='email' name='email' defaultValue={parsedAccount?.email} placeholder='Dan@email.com'
-            className='border border-orange-600 rounded-lg placeholder:text-sm placeholder:font-light placeholder:text-black/60 py-2 px-4 focus:outline-none' />
+            className='border w-full border-orange-600 rounded-lg placeholder:text-sm placeholder:font-light placeholder:text-black/60 py-2 px-4 focus:outline-none' />
         </div>
         <div className='flex flex-col gap-2 items-center'>
           <label htmlFor='password' className='font-light text-sm'>Your password:</label>
-          <input type="text"
+          <input type="password"
             id='password' name='password' defaultValue={parsedAccount?.password} placeholder='*******'
-            className='border border-orange-600 rounded-lg placeholder:text-sm placeholder:font-light placeholder:text-black/60 py-2 px-4 focus:outline-none' />
+            className='border w-full border-orange-600 rounded-lg placeholder:text-sm placeholder:font-light placeholder:text-black/60 py-2 px-4 focus:outline-none' />
         </div>
         <Link to='/'>
           <button
           onClick={createAnAccount}
-           className='bg-orange-600 w-[80%] mx-10  rounded-lg py-3 text-white'>Create</button>
+           className=' mt-4 bg-orange-600 w-[80%] mx-10  rounded-lg py-3 text-white'>Create</button>
         </Link>
       </form>
     )
