@@ -48,28 +48,28 @@ function Signin() {
   const renderLogin = () =>{
     return(
       <div className='flex flex-col w-96'>
-      <p className='flex items-center gap-1 px-28'>
-        <span className='text-sm font-light '> Email:</span>
-        <span>{parsedAccount?.email}</span>
-      </p>
-      <p className='flex items-center gap-1 px-28'>
-        <span className='text-sm font-light'>Password:</span>
-        <span>{parsedAccount?.password}</span>
-      </p>
-      <Link to='/'>
-        <button
-          onClick={handleLogin}
-          disabled={!hasUserAnAccount}
-         className='bg-orange-600 py-3 text-white  disabled:bg-orange-600/10 disabled:text-black/40 w-full rounded-lg mt-4 mb-2 text-center '>Login</button>
-      </Link>
-      <div className='text-center'>
-        <a className='font-light underline underline-offset-4 text-sm' href='/'>Forgot my password</a>
-      </div>
-      <button 
-      disabled={hasUserAnAccount}
-      onClick={() =>setView('create-user-info')}
-      className='mt-6 w-full border border-orange-300 py-3 rounded-lg disabled:border-orange-300/40 disabled:text-black/40'>Sign Up
-      </button>
+        <p className='flex items-center gap-1 px-28'>
+          <span className='text-sm font-light '> Email:</span>
+          <span>{parsedAccount?.email}</span>
+        </p>
+        <p className='flex items-center gap-1 px-28'>
+          <span className='text-sm font-light'>Password:</span>
+          <span>{parsedAccount?.password}</span>
+        </p>
+        <Link to='/'>
+          <button
+            onClick={handleLogin}
+            disabled={!hasUserAnAccount}
+          className='bg-orange-600 py-3 text-white  disabled:bg-orange-600/10 disabled:text-black/40 w-full rounded-lg mt-4 mb-2 text-center '>Login</button>
+        </Link>
+        <div className='text-center'>
+          <a className='font-light underline underline-offset-4 text-sm' href='/'>Forgot my password</a>
+        </div>
+        <button 
+        disabled={hasUserAnAccount}
+        onClick={() =>setView('create-user-info')}
+        className='mt-6 w-full border border-orange-300 py-3 rounded-lg disabled:border-orange-300/40 disabled:text-black/40'>Sign Up
+        </button>
 
       </div>
     );

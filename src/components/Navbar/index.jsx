@@ -34,7 +34,7 @@ const Navbar = () =>{
             return(
                 <>
                     <li className='text-neutral-950/60'>
-                        {account.email}
+                        {parsedGetAccount?.email}
                     </li>
                     <li>
                         <NavLink to='/my-orders' className={linkActive}>
