@@ -13,6 +13,15 @@ const Navbar = () =>{
     const signout = localStorage.getItem('sign-out');
     const stringifiedSignOut = JSON.parse(signout);
     const isUserSignout = signOut ?? stringifiedSignOut;
+
+    //getting account value from localStorage and context
+    const getAccount = localStorage.getItem('account');
+    const parsedGetAccount = JSON.parse(getAccount);
+
+    const noAccountInLocalStorage = parsedGetAccount ? Object.keys(parsedGetAccount).length === 0 : true;
+    const noAccountInState = account ? Object.keys(account).length === 0 : true;
+
+    const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInState;
     
     const handleSignOut = () =>{
         const signOutStringified = JSON.stringify(true);
@@ -21,19 +30,10 @@ const Navbar = () =>{
     }
 
     const viewRender = () =>{
-        if(isUserSignout){
-            return(
-                <li>
-                    <NavLink to='/sign-in' className={linkActive}
-                    onClick={handleSignOut}>
-                        Sign in
-                    </NavLink>
-                </li>
-            )
-        }else{
+        if(hasUserAnAccount &&!isUserSignout){
             return(
                 <>
-                     <li className='text-neutral-950/60'>
+                    <li className='text-neutral-950/60'>
                         {account.email}
                     </li>
                     <li>
@@ -60,6 +60,15 @@ const Navbar = () =>{
                     </li>
                 </>
             )
+        }else{
+            return(
+                <li>
+                    <NavLink to='/sign-in' className={linkActive}
+                    onClick={handleSignOut}>
+                        Sign in
+                    </NavLink>
+                </li>
+            )
         }
     }
 
@@ -68,7 +77,7 @@ const Navbar = () =>{
             <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light text-neutral-950 bg-white border-b'>
                 <ul className='flex items-center gap-x-3 '>
                     <li className='font-semibold text-lg text-orange-600'>
-                        <NavLink to='/'>
+                        <NavLink to={`${isUserSignout ? '/sign-in' : '/'}`}>
                             ShopFit
                         </NavLink>
                     </li>
